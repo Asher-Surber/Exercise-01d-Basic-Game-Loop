@@ -19,14 +19,22 @@ def find_passage(game_desc, pid):
 # ------------------------------------------------------
 
 def render(current):
-    pass
+    print(current["name"]+"\n")
+    print(current["text"]+"\n")
 
 def update(current, game_desc, choice):
+    if choice == "":
+        return current
+    for l in current["links"]:
+        if l["name"] == choice:
+            current = find_passage(game_desc, l["pid"])
+            return current
+    print("Invalid choice. Please try again.")
     return current
 
 def get_input(current):
-    return current
-
+    choice = input("What will you do? ")
+    return choice
 # ------------------------------------------------------
 
 def main():
